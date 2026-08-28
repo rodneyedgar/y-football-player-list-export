@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Yahoo Player List Export",
+  "version": "0.1.0",
+  "description": "Export Yahoo Fantasy Player List data to CSV, TSV, and JSON with accessible controls.",
+  "permissions": ["tabs", "downloads", "scripting", "storage"],
+  "host_permissions": ["https://*.fantasysports.yahoo.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open Yahoo Player List Export"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.fantasysports.yahoo.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

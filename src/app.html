@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yahoo Player List Export</title>
+    <link rel="stylesheet" href="app.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#controls-heading">Skip to controls</a>
+    <main id="main-content" class="layout" aria-busy="false">
+      <header class="hero">
+        <p class="eyebrow">Chromium Extension</p>
+        <h1>Yahoo Player List Export</h1>
+        <p class="intro">
+          Export Yahoo Fantasy Player List data locally as CSV, TSV, or JSON without sending league data to a server.
+        </p>
+      </header>
+
+      <section class="panel" aria-labelledby="setup-heading">
+        <h2 id="setup-heading">Before You Start</h2>
+        <ol class="checklist">
+          <li>Log into Yahoo manually in your browser.</li>
+          <li>Open the Yahoo Fantasy Player List you want to export.</li>
+          <li>Use the controls below to export the visible page or walk through pagination.</li>
+        </ol>
+      </section>
+
+      <section class="panel" aria-labelledby="controls-heading">
+        <h2 id="controls-heading">Controls</h2>
+        <p id="tab-summary" class="callout" tabindex="-1" hidden>Checking for an active Yahoo Fantasy tab.</p>
+        <form class="control-grid">
+          <label class="field">
+            <span>Yahoo Player List target</span>
+            <select id="target-tab" name="targetTab"></select>
+          </label>
+
+          <label class="field">
+            <span>Page delay in milliseconds</span>
+            <input id="delay-ms" name="delayMs" type="number" min="1000" max="10000" step="250" value="1500" aria-describedby="delay-help">
+            <span id="delay-help" class="help-text">Choose 1,000 to 10,000 milliseconds. The default is 1,500 milliseconds.</span>
+          </label>
+
+          <label class="field checkbox-row">
+            <input id="dedupe-rows" name="dedupeRows" type="checkbox" checked>
+            <span>Skip duplicate rows across pages</span>
+          </label>
+
+          <label class="field checkbox-row">
+            <input id="show-debug" name="showDebug" type="checkbox" aria-controls="tab-summary progress-log results">
+            <span>Show debugging details, including the progress log and result preview</span>
+          </label>
+
+          <div class="button-row" role="group" aria-label="Extraction controls">
+            <button id="extract-visible" type="button">Extract Visible Page</button>
+            <button id="extract-all" type="button">Extract All Pages</button>
+            <button id="pause-run" type="button" disabled>Pause</button>
+            <button id="stop-run" type="button" disabled>Stop</button>
+            <button id="reset-export" type="button">Reset Export</button>
+            <button id="refresh-targets" type="button">Refresh Targets</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="progress-heading">
+        <h2 id="progress-heading">Progress</h2>
+        <div id="live-status" class="live-status" role="status" aria-live="polite" aria-atomic="true">
+          Waiting to start an export.
+        </div>
+        <ul id="progress-log" class="log" aria-label="Progress log" hidden></ul>
+      </section>
+
+      <section class="panel" aria-labelledby="exports-heading">
+        <h2 id="exports-heading">Exports</h2>
+        <div class="button-row" role="group" aria-label="Export controls">
+          <button id="download-csv" type="button" disabled>Download CSV</button>
+          <button id="download-tsv" type="button" disabled>Download TSV</button>
+          <button id="download-json" type="button" disabled>Download JSON</button>
+        </div>
+        <p id="result-summary">No results yet.</p>
+      </section>
+
+      <section id="results" class="panel" aria-labelledby="results-heading" hidden>
+        <h2 id="results-heading">Result Table</h2>
+        <div class="table-wrap">
+          <table id="results-table">
+            <caption>Extracted Yahoo Fantasy player rows</caption>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
