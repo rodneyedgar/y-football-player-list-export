@@ -23,7 +23,6 @@ const elements = {
   tabSummary: document.getElementById("tab-summary") as HTMLElement,
   liveStatus: document.getElementById("live-status") as HTMLElement,
   progressLog: document.getElementById("progress-log") as HTMLUListElement,
-  resultSummary: document.getElementById("result-summary") as HTMLElement,
   delayMs: document.getElementById("delay-ms") as HTMLInputElement,
   targetTab: document.getElementById("target-tab") as HTMLSelectElement,
   dedupeRows: document.getElementById("dedupe-rows") as HTMLInputElement,
@@ -349,10 +348,10 @@ async function handleCompletion(payload: { runId: string; headers?: string[]; ro
   renderResults();
 
   const summary = payload.stopped
-    ? `Stopped after collecting ${state.rows.length} rows.`
+    ? `Stopped after extracting ${state.rows.length} player records.`
     : payload.partial
-      ? `Stopped early after ${state.rows.length} rows because Yahoo did not load the next page.`
-      : `Finished with ${state.rows.length} rows across ${payload.pageCount || 1} page${payload.pageCount === 1 ? "" : "s"}.`;
+      ? `Stopped early after extracting ${state.rows.length} player records because Yahoo did not load the next page.`
+      : `Finished. Extracted ${state.rows.length} player records across ${payload.pageCount || 1} page${payload.pageCount === 1 ? "" : "s"}.`;
 
   announce(summary);
   appendLog(summary);
@@ -438,7 +437,6 @@ function renderResults() {
   elements.tableBody.innerHTML = "";
 
   if (!headers.length) {
-    elements.resultSummary.textContent = "No results yet.";
     toggleDownloads(false);
     return;
   }
@@ -462,7 +460,6 @@ function renderResults() {
     elements.tableBody.appendChild(tr);
   });
 
-  elements.resultSummary.textContent = `Showing ${previewRows.length} of ${state.rows.length} row${state.rows.length === 1 ? "" : "s"}.`;
   toggleDownloads(state.rows.length > 0);
 }
 

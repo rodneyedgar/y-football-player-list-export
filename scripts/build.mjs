@@ -28,3 +28,4 @@ await esbuild.build({
 await cp(path.join(root, "src", "manifest.json"), path.join(distDir, "manifest.json"));
 await cp(path.join(root, "src", "app.html"), path.join(distDir, "app.html"));
 await cp(path.join(root, "src", "app.css"), path.join(distDir, "app.css"));
+await cp(path.join(root, "src", "icons"), path.join(distDir, "icons"), { recursive: true });

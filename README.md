@@ -1,6 +1,6 @@
-# Yahoo Player List Export
+# Y-Football Player List Export
 
-`Yahoo Player List Export` is a Chromium Manifest V3 browser extension for exporting Yahoo Fantasy Player List data to `CSV`, `TSV`, and `JSON`.
+`Y-Football Player List Export` is a Chromium Manifest V3 browser extension for exporting Yahoo Fantasy Football Player List data to `CSV`, `TSV`, and `JSON`.
 
 ## What It Does
 

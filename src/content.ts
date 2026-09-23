@@ -142,7 +142,7 @@ async function runExtraction(
       rows: allRows,
       sourceUrl: location.href,
       pageNumber: pageCount,
-      message: `Captured page ${pageCount} with ${extracted.rows.length} visible rows. Running total: ${allRows.length}.`
+      message: `Captured page ${pageCount} with ${extracted.rows.length} visible player records. Running total: ${allRows.length} player records.`
     });
 
     if (payload.mode !== "all-pages") {
